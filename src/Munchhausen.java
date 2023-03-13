@@ -14,7 +14,7 @@ public class Munchhausen {
         scan.close();
         for(int i = 0;i <= checkEndNum;i++){
             
-            if(check(i,zeroPowZero)){
+            if(check(i,zeroPowZero) == true){
                 System.out.println(i);
             }
             
@@ -24,12 +24,22 @@ public class Munchhausen {
     public static Boolean check(int checkNum,int zeroPowZero){
         String numString = String.valueOf(checkNum);
         char eachDigit [] = numString.toCharArray();
+        int sum = 0;
         for(int i =0; i<eachDigit.length;i++){
-            if(i == 0){
+            
+            if(eachDigit [i] == '0'){
                 //0の時の処理
+                sum += zeroPowZero;
             }else{
-                //それ以外の数字の処理
+                //1以上の処理
+                sum += Math.pow(eachDigit [i]-'0', eachDigit [i]-'0');
+
             }
+        }
+        if(checkNum == sum){
+            return true;
+        }else{
+            return false;
         }
     }
 }
